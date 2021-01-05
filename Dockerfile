@@ -15,7 +15,7 @@ RUN curl -o ~/miniconda.sh -O  https://repo.anaconda.com/miniconda/Miniconda3-la
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
      rm ~/miniconda.sh && \
-     /opt/conda/bin/conda install -c conda-forge numpy pyyaml scipy ipython mkl mkl-include rdkit nox cairo && \
+     /opt/conda/bin/conda install -c conda-forge numpy pyyaml scipy ipython mkl mkl-include rdkit nox cairo scikit-learn tensorboard networkx&& \
      /opt/conda/bin/conda install -c pytorch magma-cuda90 && \
      /opt/conda/bin/conda clean -ya
 ENV PATH /opt/conda/bin:$PATH
