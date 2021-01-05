@@ -15,9 +15,8 @@ RUN curl -o ~/miniconda.sh -O  https://repo.anaconda.com/miniconda/Miniconda3-la
      chmod +x ~/miniconda.sh && \
      ~/miniconda.sh -b -p /opt/conda && \
      rm ~/miniconda.sh && \
-     /opt/conda/bin/conda install numpy pyyaml scipy ipython mkl mkl-include && \
+     /opt/conda/bin/conda install -c conda-forge numpy pyyaml scipy ipython mkl mkl-include rdkit nox cairo && \
      /opt/conda/bin/conda install -c pytorch magma-cuda90 && \
-     /opt/conda/bin/conda install -c rdkit rdkit nox cairo && \
      /opt/conda/bin/conda clean -ya
 ENV PATH /opt/conda/bin:$PATH
 # This must be done before pip so that requirements.txt is available
@@ -32,8 +31,6 @@ RUN pip install --upgrade pip
 RUN TORCH_CUDA_ARCH_LIST="3.5 5.2 6.0 6.1 7.0+PTX" TORCH_NVCC_FLAGS="-Xfatbin -compress-all" \
     CMAKE_PREFIX_PATH="$(dirname $(which conda))/../" \
     conda install pytorch torchvision -c pytorch
-
-RUN pip install sklearn
 
 WORKDIR /workspace
 RUN chmod -R a+w /workspace
